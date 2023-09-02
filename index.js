@@ -16,5 +16,6 @@ const data = `
 </body>
 </html>
 `
+console.log('oi');
 console.log(pathToWrite)
 fs.writeFileSync(pathToWrite, data);

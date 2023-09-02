@@ -8,12 +8,14 @@ jobs:
   send-notification:
     runs-on: ubuntu-latest
     steps:
+    - name: Check if PR was merged
+      id: pr_check
+      run: echo "::set-output name=merged::${{ github.event.pull_request.merged }}"
+    
     - name: Discord notification
+      if: steps.pr_check.outputs.merged == 'true'
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
       uses: Ilshidur/action-discord@master
       with:
         args: '${{ github.actor }} acabou de ter um pull request aceito! Parabéns! Continue assim.'
-
-    
-        
