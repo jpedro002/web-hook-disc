@@ -2,7 +2,7 @@ name: Discord Notifications
 
 on:
   pull_request:
-    types: [merged]
+    types: [closed]
 
 jobs:
   send-notification:
