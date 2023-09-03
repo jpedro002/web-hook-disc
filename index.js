@@ -13,6 +13,7 @@ const data = `
 </head>
 <body>
     <h1>Olá Node</h1>
+    <span>oi</span>
 </body>
 </html>
 `
