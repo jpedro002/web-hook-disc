@@ -1,4 +1,4 @@
-name: Discord Notifications
+name: Discord Notifications teste fix
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
 
     - name: Create Discord embed
       id: create_embed
-      run: node create-discord-embed.js
+      run: node create-embed.js
 
     - name: Send Discord notification
       uses: Ilshidur/action-discord@master
