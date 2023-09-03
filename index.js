@@ -13,7 +13,7 @@ const data = `
 </head>
 <body>
     <h1>Olá Node</h1>
-    <p>que legal</p>
+    
 </body>
 </html>
 `
