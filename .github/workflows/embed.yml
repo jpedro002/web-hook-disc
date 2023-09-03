@@ -1,4 +1,4 @@
-name: Discord Notifications teste
+name: Discord Notifications
 
 on:
   push:
@@ -15,16 +15,14 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 18  
+        node-version: 14
 
     - name: Install dependencies
       run: npm install
-      working-directory: /home/runner/work/web-hook-disc/web-hook-disc/web-hook-disc  
 
     - name: Create Discord embed
       id: create_embed
       run: node create-discord-embed.js
-      working-directory: /home/runner/work/web-hook-disc/web-hook-disc/web-hook-disc  
 
     - name: Send Discord notification
       uses: Ilshidur/action-discord@master
