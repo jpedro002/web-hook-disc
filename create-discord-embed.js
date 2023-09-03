@@ -20,7 +20,7 @@ async function createEmbed() {
     .setDescription(`${githubActor} acabou de ter um pull request aceito! Parabéns! Continue assim.`)
     .setThumbnail(avatarUrl); // Define a thumbnail com a URL da foto de perfil
 
-  console.log(JSON.stringify(embed));
+  return embed
 }
 
 createEmbed();
