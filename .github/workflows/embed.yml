@@ -19,12 +19,12 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: web-hook-disc  
+      working-directory: /home/runner/work/web-hook-disc/web-hook-disc/web-hook-disc  
 
     - name: Create Discord embed
       id: create_embed
       run: node create-discord-embed.js
-      working-directory: web-hook-disc  
+      working-directory: /home/runner/work/web-hook-disc/web-hook-disc/web-hook-disc  
 
     - name: Send Discord notification
       uses: Ilshidur/action-discord@master
