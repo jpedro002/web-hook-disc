@@ -1,16 +1,13 @@
 const { MessageEmbed } = require('discord.js');
+const axios = require('axios');
 
 // Função para obter a foto de perfil do autor do pull request
 async function getAuthorAvatar(username) {
-  const response = await fetch(`https://api.github.com/users/${username}`);
-
-  if (response.ok) {
-    const userData = await response.json();
-    return userData.avatar_url;
-  } else {
-    console.error(`Erro ao obter dados do usuário do GitHub: ${response.status} ${response.statusText}`);
-    return null;
+  const response = await axios.get(`https://api.github.com/users/${username}`);
+  if (response.status === 200) {
+    return response.data.avatar_url;
   }
+  return null;
 }
 
 async function createEmbed() {
