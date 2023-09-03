@@ -12,10 +12,13 @@ jobs:
       id: pr_check
       run: echo "::set-output name=merged::${{ github.event.pull_request.merged }}"
     
-    - name: Discord notification
+    - name: Create Discord embed
+      id: create_embed
+      run: echo "::set-output name=embed::$(node create-discord-embed.js)"
+
+    - name: Send Discord notification
       if: steps.pr_check.outputs.merged == 'true'
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        DISCORD_EMBED: ${{ steps.create_embed.outputs.embed }}
       uses: Ilshidur/action-discord@master
-      with:
-        args: '${{ github.actor }} acabou de ter um pull request aceito! Parabéns! Continue assim.'
