@@ -1,0 +1,33 @@
+name: Discord Notifications teste
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18  
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: web-hook-disc  
+
+    - name: Create Discord embed
+      id: create_embed
+      run: node create-discord-embed.js
+      working-directory: web-hook-disc  
+
+    - name: Send Discord notification
+      uses: Ilshidur/action-discord@master
+      with:
+        discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        discord_message: ${{ steps.create_embed.outputs.embed }}
