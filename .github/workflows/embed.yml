@@ -24,9 +24,9 @@ jobs:
       id: create_embed
       run: node create-discord-embed.js
 
-      - name: Discord notification
+    - name: Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+        args: 'The project ${{ github.repository }} has been deployed.'
