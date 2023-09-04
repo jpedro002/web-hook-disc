@@ -28,4 +28,4 @@ jobs:
       uses: Ilshidur/action-discord@master
       with:
         discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        discord_message: ${{ steps.create_embed.outputs.embed }}
+        discord_message: ${{ toJson(steps.create_embed.outputs.embed) }}
