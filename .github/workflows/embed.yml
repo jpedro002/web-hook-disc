@@ -29,4 +29,9 @@ jobs:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        DISCORD_EMBEDS: ${{ toJson(steps.create_embed.outputs.embed) }}
+        DISCORD_EMBEDS: ${{ toJson({
+          "embeds": [{
+            "title": "Hello!",
+            "description": "Hi! :grinning:"
+          }]
+        }) }}
