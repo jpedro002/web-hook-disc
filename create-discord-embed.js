@@ -15,7 +15,7 @@ async function getAuthorAvatar(username) {
 }
 
 async function createEmbed() {
-  const githubActor = process.env.GITHUB_ACTOR;
+  const githubActor = "jpedro002";
 
   try {
     const avatarUrl = await getAuthorAvatar(githubActor); // Obtém a URL da foto de perfil do autor
@@ -38,6 +38,7 @@ createEmbed()
   .then(embed => {
     if (embed) {
       console.log(embed);
+      return JSON.stringify(embed)
     } else {
       console.log('Erro ao criar o embed.');
     }
