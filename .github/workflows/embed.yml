@@ -27,5 +27,5 @@ jobs:
     - name: Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        DISCORD_EMBEDS: ${{ steps.create_embed.outputs.value}}
+        DISCORD_EMBEDS: ${{ {"embeds":[{"author":{"name":"jpedro002","url":"https://avatars.githubusercontent.com/u/122836400?v=4"},"description":"acabou de ter um pull request aceito! Parabéns! Continue assim.","color":3735722}]}}}
       uses: Ilshidur/action-discord@master
