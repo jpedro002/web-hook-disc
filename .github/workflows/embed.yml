@@ -27,10 +27,5 @@ jobs:
     - name: Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        DISCORD_EMBEDS: ${{ toJson({
-          "embeds": [{
-            "title": "Hello!",
-            "description": "Hi! :grinning:"
-          }]
-        }) }}
+        DISCORD_EMBEDS: '{"embeds": [{"title": "Hello!", "description": "Hi! :grinning:"}]}'
       uses: Ilshidur/action-discord@master
