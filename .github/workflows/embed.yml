@@ -20,6 +20,12 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Obter texto do commit
+      id: get_commit_message
+      run: |
+        commit_message=$(jq -r '.commits[0].message' $GITHUB_EVENT_PATH)
+        echo "::set-output name=commit_message::$commit_message"
+
     - name: Create Discord embed
       id: create_embed
       run: node create-discord-embed.js
@@ -27,5 +33,6 @@ jobs:
     - name: Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        DISCORD_EMBEDS: ${{ toJson(steps.create_embed.outputs.value)}}
+        DISCORD_EMBEDS: ${{ toJson(steps.create_embed.outputs.embed)}}
+        args: "Commit Merged: ${{ steps.get_commit_message.outputs.commit_message }}"
       uses: Ilshidur/action-discord@master
