@@ -20,5 +20,5 @@ jobs:
       if: steps.pr_check.outputs.merged == 'true'
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        DISCORD_EMBED: ${{ steps.create_embed.outputs.embed }}
+        DISCORD_EMBED: ${{ toJson(steps.create_embed.outputs.embed)}}
       uses: Ilshidur/action-discord@master
