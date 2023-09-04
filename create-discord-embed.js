@@ -24,7 +24,7 @@ async function createEmbed() {
       {
         author: {
           name: "",
-          url: "",
+          icon_url: "",
         },
         description:
           "acabou de ter um pull request aceito! Parabéns! Continue assim.",

@@ -15,12 +15,12 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 18
+        node-version: 14  # Alterei de 18 para 14, pois a versão 14 é mais comum
 
     - name: Install dependencies
       run: npm install
 
-    - name: Obter texto do commit
+    - name: Get commit message
       id: get_commit_message
       run: |
         commit_message=$(jq -r '.commits[0].message' $GITHUB_EVENT_PATH)
@@ -33,6 +33,6 @@ jobs:
     - name: Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        DISCORD_EMBEDS: ${{ toJson(steps.create_embed.outputs.embed)}}
+        DISCORD_EMBEDS: ${{ steps.create_embed.outputs.embed }}
         args: "Commit Merged: ${{ steps.get_commit_message.outputs.commit_message }}"
       uses: Ilshidur/action-discord@master
