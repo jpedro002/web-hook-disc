@@ -25,6 +25,7 @@ jobs:
       run: |
         output=$(node create-discord-embed.js)
         echo "CREATE_EMBED=output" >> "$GITHUB_OUTPUT"
+        echo "$output"
 
     - name: Discord notification
       env:
