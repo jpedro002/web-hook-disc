@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const axios = require("axios");
 
-// Função para obter a foto de perfil do autor do pull request
 async function getAuthorAvatar(username) {
   try {
     const response = await axios.get(
@@ -34,7 +33,7 @@ async function createEmbed() {
   };
 
   try {
-    const avatarUrl = await getAuthorAvatar(githubActor); // Obtém a URL da foto de perfil do autor
+    const avatarUrl = await getAuthorAvatar(githubActor); 
 
     const embed = new Discord.EmbedBuilder().setColor("Random");
     const color = embed.data.color;
@@ -50,7 +49,7 @@ async function createEmbed() {
   }
 }
 
-// Como createEmbed é assíncrona, você deve esperar a promessa ser resolvida antes de imprimir o resultado
+
 createEmbed()
   .then((embed) => {
     if (embed) {

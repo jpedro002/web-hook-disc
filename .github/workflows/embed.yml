@@ -22,7 +22,9 @@ jobs:
 
     - name: Create Discord embed
       id: create_embed
-      run: echo "CREATE_EMBED=$(node create-discord-embed.js)" >> "$GITHUB_OUTPUT"
+      run: |
+        output=$(node create-discord-embed.js)
+        echo "$output"
 
     - name: Discord notification
       env:
