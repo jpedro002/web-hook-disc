@@ -50,8 +50,8 @@ jobs:
 
       - name: Discord notification
         env:
-          DISCORD_WEBHOOK: "${{ secrets.DISCORD_WEBHOOK }}"
-          DISCORD_EMBEDS: "${{ toJson(needs.create-notification.outputs.output1) }}"
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: ${{ toJson(needs.create-notification.outputs.output1) }}
         uses: Ilshidur/action-discord@master
         with:
           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
