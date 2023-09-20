@@ -46,4 +46,5 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_EMBEDS: ${{ env.EMBED}}
         uses: Ilshidur/action-discord@master
+        run: echo "$DISCORD_EMBEDS"
         
