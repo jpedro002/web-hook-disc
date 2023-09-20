@@ -52,10 +52,10 @@ async function createEmbed() {
 // Como createEmbed é assíncrona, você deve esperar a promessa ser resolvida antes de imprimir o resultado
 createEmbed()
   .then((embed) => {
-    const { embeds } = embed
-    if (embeds) {
-      console.log(JSON.stringify(embeds).trim());
-      return JSON.stringify(embeds).trim();
+    
+    if (embed) {
+      console.log(JSON.stringify(embed).trim());
+      return JSON.stringify(embed).trim();
     } else {
       console.log("Erro ao criar o embed.");
     }
