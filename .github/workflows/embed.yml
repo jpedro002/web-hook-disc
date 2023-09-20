@@ -22,7 +22,9 @@ jobs:
 
       - name: Create Discord embed
         id: create_embed
-        run: node create-discord-embed.js >> "$GITHUB_OUTPUT"
+        run: |
+          node_exec=$((node create-discord-embed.js))
+          echo $node_exec
       
       - name: log discord embed
         id: log_create_embed
