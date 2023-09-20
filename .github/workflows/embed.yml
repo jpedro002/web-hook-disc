@@ -8,8 +8,8 @@ on:
 jobs:
   create-notification:
     runs-on: ubuntu-latest
-    # outputs:
-    #   output1: ${{ steps.create_embed.outputs.embed }}
+    outputs:
+      output1: ${{ steps.create_embed.outputs.embed }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -33,25 +33,25 @@ jobs:
         run: |
           echo "$embed"
 
-  # send-notification:
-  #   runs-on: ubuntu-latest
-  #   needs: create-notification
-  #   steps:
-  #     - env:
-  #         EMBED: ${{toJson(needs.create-notification.outputs.output1)}}
-  #       run: echo "$EMBED"
+  send-notification:
+    runs-on: ubuntu-latest
+    needs: create-notification
+    steps:
+      - env:
+          EMBED: ${{toJson(needs.create-notification.outputs.output1)}}
+        run: echo "$EMBED"
   
       
-  #     - name: log discord embed
-  #       id: log_create_embed
-  #       run: |
-  #         echo "$DISCORD_EMBEDS"
+      - name: log discord embed
+        id: log_create_embed
+        run: |
+          echo "$DISCORD_EMBEDS"
           
 
-  #     - name: Discord notification
-  #       env:
-  #         DISCORD_WEBHOOK: "${{ secrets.DISCORD_WEBHOOK }}"
-  #         DISCORD_EMBEDS: "${{ toJson(needs.create-notification.outputs.output1) }}"
-  #       uses: Ilshidur/action-discord@master
-  #       with:
-  #         args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: "${{ secrets.DISCORD_WEBHOOK }}"
+          DISCORD_EMBEDS: "${{ toJson(needs.create-notification.outputs.output1) }}"
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
