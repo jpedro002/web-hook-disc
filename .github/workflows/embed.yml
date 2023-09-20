@@ -42,7 +42,6 @@ jobs:
           echo "${{ env.EMBED}}"
 
       - name: Discord notification
-        needs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_EMBEDS: ${{ env.EMBED}}
