@@ -36,15 +36,16 @@ jobs:
           EMBED: ${{needs.create-notification.outputs.output1}}
         run: echo "$EMBED"
   
-      - name: log discord embed
-        id: log_create_embed
-        run: |
-          echo "${{ needs.create-notification.outputs.output1 }}"
+      
 
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_EMBEDS: ${{ env.EMBED}}
-        run: echo "$DISCORD_EMBEDS"
         uses: Ilshidur/action-discord@master
         
+      - name: log discord embed
+        id: log_create_embed
+        run: |
+          echo "${{ needs.create-notification.outputs.output1 }}"
+          echo "$DISCORD_EMBEDS"
