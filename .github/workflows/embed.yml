@@ -9,7 +9,7 @@ jobs:
   create-notification:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.create_embed.outputs.embed }} # Correção aqui
+      output1: ${{ steps.create_embed.outputs.embed }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -26,20 +26,23 @@ jobs:
         id: create_embed
         run: |
           node_exec=$(node create-discord-embed.js)
-          echo "embed=$node_exec" >> $GITHUB_ENV
+          echo "embed=$node_exec" >> $GITHUB_OUTPUT
 
   send-notification:
     runs-on: ubuntu-latest
     needs: create-notification
     steps:
-      - name: log discord embed
-        id: log_create_embed
+      - env:
+          EMBED: ${{needs.create-notification.outputs.output1}}
         run: |
-          echo "${{ needs.create-notification.outputs.output1 }}" 
-          echo "${{ toJson(needs.create-notification.outputs.output1)  }}" 
-
-      - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }} 
-          DISCORD_EMBEDS: ${{ needs.create-notification.outputs.output1 }} 
-        uses: Ilshidur/action-discord@master
+          echo "$EMBED"
+          
+        
+        
+        # - name: Discord notification
+        # env:
+        #   DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        #   DISCORD_EMBEDS: ${{toJson(env.EMBED)}}
+        #   uses: Ilshidur/action-discord@master
+          
+        
