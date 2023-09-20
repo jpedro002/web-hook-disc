@@ -35,11 +35,15 @@ jobs:
       - env:
           EMBED: ${{needs.create-notification.outputs.output1}}
         run: echo "$EMBED"
+  
+      - name: log discord embed
+        id: log_create_embed
+        run: |
+          echo "${{ needs.create-notification.outputs.output1 }}"
 
       - name: Discord notification
         env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        DISCORD_EMBEDS: ${{ {"embeds":[{"author":{"name":"jpedro002","url":"https://avatars.githubusercontent.com/u/122836400?v=4"},"description":"acabou de ter um pull request aceito! Parabéns! Continue assim.","color":15468499}]} }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: ${{ env.EMBED}}
         uses: Ilshidur/action-discord@master
-          
         
