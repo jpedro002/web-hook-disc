@@ -23,12 +23,14 @@ jobs:
       - name: Create Discord embed
         id: create_embed
         run: |
-          node_exec=$((node create-discord-embed.js))
-          echo "handle=$node_exec" >> "$GITHUB_OUTPUT"
-      
+          node_exec=$(node create-discord-embed.js)
+          echo "handle=$node_exec" >> $GITHUB_ENV
+    
       - name: log discord embed
         id: log_create_embed
-        run: echo "${{ steps.create_embed.outputs.handle }}"
+        run: |
+          echo "$handle"
+      
 
       # - name: Discord notification
       #   env:
