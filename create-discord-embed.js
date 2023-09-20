@@ -54,8 +54,8 @@ async function createEmbed() {
 createEmbed()
   .then((embed) => {
     if (embed) {
-      console.log(JSON.stringify(embed));
-      return JSON.stringify(embed);
+      console.log(embed);
+      return embed;
     } else {
       console.log("Erro ao criar o embed.");
     }
