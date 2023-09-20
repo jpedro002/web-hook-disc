@@ -33,10 +33,15 @@ jobs:
     needs: create-notification
     steps:
       - env:
-          EMBED: ${{needs.create-notification.outputs.output1}}
+          EMBED: ${{toJson(needs.create-notification.outputs.output1)}}
         run: echo "$EMBED"
   
       
+      - name: log discord embed
+        id: log_create_embed
+        run: |
+          echo "$DISCORD_EMBEDS"
+          
 
       - name: Discord notification
         env:
@@ -44,7 +49,3 @@ jobs:
           DISCORD_EMBEDS: "${{ needs.create-notification.outputs.output1 }}"
         uses: Ilshidur/action-discord@master
         
-      - name: log discord embed
-        id: log_create_embed
-        run: |
-          echo "$DISCORD_EMBEDS"
