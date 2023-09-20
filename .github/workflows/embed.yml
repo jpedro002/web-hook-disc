@@ -24,17 +24,17 @@ jobs:
         id: create_embed
         run: |
           node_exec=$(node create-discord-embed.js)
-          echo "handle=$node_exec" >> $GITHUB_ENV
+          echo "embed=$node_exec" >> $GITHUB_ENV
     
-      - name: log discord embed
-        id: log_create_embed
-        run: |
-          echo "$handle"
+      # - name: log discord embed
+      #   id: log_create_embed
+      #   run: |
+      #     echo "$embed"
       
 
-      # - name: Discord notification
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      #     DISCORD_EMBEDS: ${{ steps.create_embed.outputs.value}}
-      #   uses: Ilshidur/action-discord@master
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: ${{ env.embed}}
+        uses: Ilshidur/action-discord@master
         
