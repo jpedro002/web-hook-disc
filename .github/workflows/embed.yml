@@ -35,7 +35,7 @@ jobs:
       - name: log discord embed
         id: log_create_embed
         run: |
-          echo "$embed"
+          echo "${{ env.embed }}"
 
       # - name: Discord notification
       #   needs:
