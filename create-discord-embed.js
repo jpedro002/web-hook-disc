@@ -26,8 +26,7 @@ async function createEmbed() {
           name: "",
           url: "",
         },
-        description:
-          "acabou de ter um pull request aceito! Parabéns! Continue assim.",
+        description: "acabou de ter um pull request aceito! Parabéns! Continue assim.",
         color: 0,
       },
     ],
@@ -55,7 +54,7 @@ createEmbed()
   .then((embed) => {
     const { embeds } = embed
     if (embeds) {
-      console.log(JSON.stringify(embeds));
+      console.log(JSON.stringify(embeds.trim()));
       return JSON.stringify(embeds);
     } else {
       console.log("Erro ao criar o embed.");
