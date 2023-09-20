@@ -54,8 +54,8 @@ createEmbed()
   .then((embed) => {
     const { embeds } = embed
     if (embeds) {
-      console.log(JSON.stringify(embeds.trim()));
-      return JSON.stringify(embeds);
+      console.log(JSON.stringify(embeds).trim());
+      return JSON.stringify(embeds).trim();
     } else {
       console.log("Erro ao criar o embed.");
     }
