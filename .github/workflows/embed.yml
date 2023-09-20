@@ -22,11 +22,13 @@ jobs:
 
     - name: Create Discord embed
       id: create_embed
-      run:  node create-discord-embed.js
+      run:  |
+        node_exec=$(node create-discord-embed.js)
+        echo "embed=$node_exec" >> $GITHUB_OUTPUT
 
     - name: Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        DISCORD_EMBEDS: ${{ steps.create_embed.outputs.value}}
+        DISCORD_EMBEDS: ${{ steps.create_embed.outputs.embed}}
       uses: Ilshidur/action-discord@master
           
