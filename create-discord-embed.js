@@ -43,12 +43,8 @@ async function createEmbed() {
     data.embeds[0].author.name = githubActor;
     data.embeds[0].author.url = avatarUrl;
 
-    const arrOfObj ={
-      "embeds": [{
-        "title": "Hello!",
-        "description": "Hi! :grinning:"
-      }]
-    } 
+    const arrOfObj = [{"title":"Hello!","description":"Hi! :grinning:"}]
+    
 
     return arrOfObj  //data;
   } catch (error) {
