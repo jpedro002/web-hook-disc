@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const axios = require("axios");
 
-// Função para obter a foto de perfil do autor do pull request
 async function getAuthorAvatar(username) {
   try {
     const response = await axios.get(
@@ -11,7 +10,7 @@ async function getAuthorAvatar(username) {
       return response.data.avatar_url;
     }
   } catch (error) {
-    //console.error("Erro ao obter a foto de perfil:", error);
+    console.error("Erro ao obter a foto de perfil:", error);
   }
   return null;
 }
@@ -23,7 +22,7 @@ async function createEmbed() {
       {
         author: {
           name: "",
-          url: "",
+          icon_url: "",
         },
         description:
           "acabou de ter um pull request aceito! Parabéns! Continue assim.",
@@ -32,7 +31,7 @@ async function createEmbed() {
     ]
 
   try {
-    const avatarUrl = await getAuthorAvatar(githubActor); // Obtém a URL da foto de perfil do autor
+    const avatarUrl = await getAuthorAvatar(githubActor);  
 
     const embed = new Discord.EmbedBuilder().setColor("Random");
     const color = embed.data.color;
@@ -45,22 +44,21 @@ async function createEmbed() {
 
     return data;
   } catch (error) {
-   // console.error("Erro ao criar o embed:", error);
+    console.error("Erro ao criar o embed:", error);
     return null;
   }
 }
 
-// Como createEmbed é assíncrona, você deve esperar a promessa ser resolvida antes de imprimir o resultado
 createEmbed()
   .then((embed) => {
     if (embed) {
       console.log(JSON.stringify(embed));
       return JSON.stringify(embed); 
     } else {
-      //console.log("Erro ao criar o embed.");
+      console.log("Erro ao criar o embed.");
     }
   })
   .catch((err) => {
-    //console.error("Erro inesperado:", err);
+    console.error("Erro inesperado:", err);
   });
  
