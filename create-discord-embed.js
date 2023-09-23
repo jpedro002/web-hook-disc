@@ -38,7 +38,7 @@ async function createEmbed() {
 
     data[0].color = color;
     data[0].author.name = githubActor;
-    data[0].author.url = avatarUrl;
+    data[0].author.icon_url = avatarUrl;
 
     
 
