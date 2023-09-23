@@ -43,7 +43,9 @@ async function createEmbed() {
     data.embeds[0].author.name = githubActor;
     data.embeds[0].author.url = avatarUrl;
 
-    return {"username":"Cat","content":"Hello!"}  //data;
+    const arrOfObj =[{"username":"Cat","content":"Hello!"}] 
+
+    return arrOfObj  //data;
   } catch (error) {
     console.error("Erro ao criar o embed:", error);
     return null;
@@ -63,3 +65,4 @@ createEmbed()
   .catch((err) => {
     console.error("Erro inesperado:", err);
   });
+ 
