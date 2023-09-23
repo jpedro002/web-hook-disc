@@ -12,22 +12,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14 # Use a versão do Node.js adequada ao seu projeto
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: '[{
-            "embeds": [{
-              "title": "Hello!",
-              "description": "Hi! :grinning:"
-            }]
-          }]'
+          DISCORD_EMBEDS: '{"embeds":[{"title":"Hello!","description":"Hi! :grinning:"}]}'
         uses: Ilshidur/action-discord@master
 
