@@ -20,17 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-        - name: Discord notification
+      - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: '[
-            {
-              "author": {
-                "url": null
-              },
-              "description": "Acabou de ter um pull request aceito! Parabéns! Continue assim.",
-              "color": 4736169
-            }
-          ]'
+          DISCORD_EMBEDS: '{"embeds":[{"author":{"url":null},"description":"Acabou de ter um pull request aceito! Parabéns! Continue assim.","color":4736169}]}'
         uses: Ilshidur/action-discord@master
-      
