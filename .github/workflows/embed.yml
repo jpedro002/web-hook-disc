@@ -23,5 +23,12 @@ jobs:
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: '{"embeds":[{"author":{"url":null},"description":"Acabou de ter um pull request aceito! Parabéns! Continue assim.","color":4736169}]}'
+          DISCORD_EMBEDS: '{
+            "embeds": [{
+              "title": "Hello!",
+              "description": "Hi! :grinning:"
+            }]
+          }'
         uses: Ilshidur/action-discord@master
+
+        
