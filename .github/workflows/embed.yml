@@ -1,32 +1,38 @@
----
-  name: Discord Notifications
-  on:
-    push:
-      branches:
-        - "*"
-  jobs:
-    send-notification:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-        - name: Set up Node.js
-          uses: actions/setup-node@v2
-          with:
-            node-version: 18
-        - name: Install dependencies
-          run: npm install
+name: Discord Notifications
 
-        # - name: Create Discord embed
-        #   id: create_embed
-        #   run: |
-        #     node_exec=$(node create-discord-embed.js)
-        #     echo "embed=$node_exec" >> $GITHUB_OUTPUT
+on:
+  push:
+    branches:
+      - "*"
 
-        - name: Discord notification
-          env:
-            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-            DISCORD_EMBEDS: ${{ '{"embeds":[{"author":{"url":null},"description":"acabou de ter um pull request aceito! Parabéns! Continue assim.","color":4736169}]}' }}
-            #DISCORD_EMBEDS: ${{ toJson('{"embeds":[{"author":{"url":null},"description":"acabou de ter um pull request aceito! Parabéns! Continue assim.","color":4736169}]}') }}
-          uses: Ilshidur/action-discord@master
-  
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14 # Use a versão do Node.js adequada ao seu projeto
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: |
+            {
+              "embeds": [
+                {
+                  "author": {
+                    "url": null
+                  },
+                  "description": "Acabou de ter um pull request aceito! Parabéns! Continue assim.",
+                  "color": 4736169
+                }
+              ]
+            }
+        uses: Ilshidur/action-discord@master
