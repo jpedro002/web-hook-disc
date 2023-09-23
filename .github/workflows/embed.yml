@@ -1,24 +1,21 @@
-name: Discord Notifications
-
-on:
-  push:
-    branches:
-      - "*"
-
-jobs:
-  send-notification:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Discord notification
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        DISCORD_EMBEDS: ${{ toJson({"embeds":[{"author":{"name":"jpedro002","url":"https://avatars.githubusercontent.com/u/122836400?v=4"},"description":"acabou de ter um pull request aceito! Parabéns! Continue assim.","color":3735722}]}) }}
-      uses: Ilshidur/action-discord@master
-
-
-
-
-        
+---
+  name: Discord Notifications
+  on:
+    push:
+      branches:
+        - "*"
+  jobs:
+    send-notification:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: Discord notification
+          env: null
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: ${{
+            toJson({"embeds":[{"author":{"name":"jpedro002","url":"https://avatars.githubusercontent.com/u/122836400?v=4"},"description":"acabou
+            de ter um pull request aceito! Parabéns! Continue
+            assim.","color":3735722}]}) }}
+          uses: Ilshidur/action-discord@master
+  
