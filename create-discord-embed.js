@@ -19,8 +19,7 @@ async function getAuthorAvatar(username) {
 async function createEmbed() {
   const githubActor = process.env.GITHUB_ACTOR
 
-  const data = {
-    embeds: [
+  const data =[
       {
         author: {
           name: "",
@@ -30,8 +29,7 @@ async function createEmbed() {
           "acabou de ter um pull request aceito! Parabéns! Continue assim.",
         color: 0,
       },
-    ],
-  };
+    ]
 
   try {
     const avatarUrl = await getAuthorAvatar(githubActor); // Obtém a URL da foto de perfil do autor
@@ -39,14 +37,13 @@ async function createEmbed() {
     const embed = new Discord.EmbedBuilder().setColor("Random");
     const color = embed.data.color;
 
-    data.embeds[0].color = color;
-    data.embeds[0].author.name = githubActor;
-    data.embeds[0].author.url = avatarUrl;
+    data[0].color = color;
+    data[0].author.name = githubActor;
+    data[0].author.url = avatarUrl;
 
-    const arrOfObj = [{"title":"Hello!","description":"Hi! :grinning:"}]
     
 
-    return arrOfObj  //data;
+    return data;
   } catch (error) {
    // console.error("Erro ao criar o embed:", error);
     return null;
