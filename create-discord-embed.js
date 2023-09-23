@@ -43,7 +43,7 @@ async function createEmbed() {
     data.embeds[0].author.name = githubActor;
     data.embeds[0].author.url = avatarUrl;
 
-    return data;
+    return {"username":"Cat","content":"Hello!"}  //data;
   } catch (error) {
     console.error("Erro ao criar o embed:", error);
     return null;
