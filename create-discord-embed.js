@@ -11,7 +11,7 @@ async function getAuthorAvatar(username) {
       return response.data.avatar_url;
     }
   } catch (error) {
-    console.error("Erro ao obter a foto de perfil:", error);
+    //console.error("Erro ao obter a foto de perfil:", error);
   }
   return null;
 }
@@ -43,11 +43,16 @@ async function createEmbed() {
     data.embeds[0].author.name = githubActor;
     data.embeds[0].author.url = avatarUrl;
 
-    const arrOfObj =[{"username":"Cat","content":"Hello!"}] 
+    const arrOfObj ={
+      "embeds": [{
+        "title": "Hello!",
+        "description": "Hi! :grinning:"
+      }]
+    } 
 
     return arrOfObj  //data;
   } catch (error) {
-    console.error("Erro ao criar o embed:", error);
+   // console.error("Erro ao criar o embed:", error);
     return null;
   }
 }
@@ -59,10 +64,10 @@ createEmbed()
       console.log(JSON.stringify(embed));
       return JSON.stringify(embed); 
     } else {
-      console.log("Erro ao criar o embed.");
+      //console.log("Erro ao criar o embed.");
     }
   })
   .catch((err) => {
-    console.error("Erro inesperado:", err);
+    //console.error("Erro inesperado:", err);
   });
  
