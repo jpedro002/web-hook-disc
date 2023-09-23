@@ -16,9 +16,8 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_EMBEDS: > 
-          {
-            "username": "Cat",
-            "content": "Hello!"
-          }
+            {
+              "username": "Cat",
+              "content": "Hello!"
+            }
         uses: Ilshidur/action-discord@master
-
