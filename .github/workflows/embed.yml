@@ -3,31 +3,31 @@ name: Discord Notifications
 on:
   push:
     branches:
-      - '*'
+      - "*"
 
 jobs:
   send-notification:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Create Discord embed
-      id: create_embed
-      run: node create-discord-embed.js
+      - name: Create Discord embed
+        id: create_embed
+        run: node create-discord-embed.js
 
-    - name: Discord notification
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        DISCORD_PERSONALIZED_EMBED: ${{ steps.create_embed.outputs.value}}
-      uses: jpedro002/Discord-Notification@v1.0.0
-      
-  
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_PERSONALIZED_EMBED: ${{ steps.create_embed.outputs.value}}
+        uses: jpedro002/Discord-Notification@v1.0.0
+        
+
